@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovelNest</title>
+    <meta
+      name="description"
+      content="Dive into the world of NovelNext – an exciting novel filled with adventure, mystery, and unforgettable characters. A must-read for fans of thrilling fiction."
+    />
+    <meta
+      name="keywords"
+      content="NovelNext, thrilling novel, adventure novel, mystery book, best books 2025, fiction books, must-read novels"
+    />
+    <meta name="author" content="Author Name" />
+    <meta
+      property="og:title"
+      content="NovelNext: A Gripping Story of Adventure and Mystery"
+    />
+    <meta
+      property="og:description"
+      content="Discover the thrilling world of NovelNext. Uncover the secrets, adventure, and intrigue that await in this must-read novel."
+    />
+    <meta property="og:image" content="URL_to_image_of_cover.jpg" />
+    <meta property="og:url" content="https://novelnext.onrender.com" />
+    <meta property="og:type" content="book" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Book", "novel" , "news"
+        "name": "NovelNext",
+        "author": "Ahuekwe Precious Maduabuchi",
+        "genre": "Adventure, Mystery, romantic, Love, Magic, all, everyone, google",
+        "publisher": "Ahuekwe Precious Maduabuchi",
+        "datePublished": "2025-04-01",
+        "isbn": "1234567890",
+        "description": "NovelNext is an exciting adventure and mystery novel that will captivate fans of thrilling fiction.",
+        "url": "https://novelnest.onrender.com",
+        "image": "URL_to_image_of_cover.jpg"
+      }
+    </script>
+    <meta name="monetag" content="18a4805400631d6ede66478af49980f7" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.4/parse.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #4a6fa5;
+        --secondary: #166088;
+        --accent: #4fc3dc;
+        --text: #333;
+        --bg: #f9f9f9;
+        --card-bg: #fff;
+        --border: #e0e0e0;
+        --dark-bg: #2c3e50;
+        --dark-card: #34495e;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      /* Header */
+      header {
+        background-color: var(--primary);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+
+      .nav-link:hover {
+        opacity: 0.8;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      /* Hero section */
+      .hero {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("/api/placeholder/1200/400");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .search-box {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      .search-input {
+        flex-grow: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px 0 0 4px;
+        font-size: 1rem;
+      }
+
+      .search-btn {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .search-btn:hover {
+        background-color: var(--secondary);
+      }
+
+      /* Novel grid */
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--secondary);
+        margin: 2rem 0 1.5rem;
+        text-align: center;
+      }
+
+      .novels-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .novel-card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s;
+      }
+
+      .novel-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .novel-cover {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        background-color: #eee;
+      }
+
+      .novel-info {
+        padding: 1rem;
+      }
+
+      .novel-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .novel-description {
+        color: #666;
+        font-size: 0.9rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .novel-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: #888;
+      }
+
+      .read-btn {
+        display: block;
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.6rem 0;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+        text-decoration: none;
+      }
+
+      .read-btn:hover {
+        background-color: var(--primary);
+      }
+
+      /* Novel detail page */
+      .novel-detail {
+        display: none;
+        padding: 2rem 0;
+      }
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+
+      .novel-header {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .novel-cover-large {
+        width: 280px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .novel-meta {
+        flex-grow: 1;
+      }
+
+      .novel-title-large {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--secondary);
+      }
+
+      .novel-description-full {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      .chapter-list {
+        margin-top: 2rem;
+      }
+
+      .chapter-item {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .chapter-item:hover {
+        background-color: #f0f0f0;
+      }
+
+      .chapter-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      /* Chapter reading */
+      .chapter-content {
+        display: none;
+        padding: 2rem 0;
+      }
+
+      .chapter-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
+      }
+
+      .chapter-nav-btn {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .chapter-nav-btn:hover {
+        background-color: var(--primary);
+      }
+
+      .chapter-nav-btn.disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      .chapter-text {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .chapter-text p {
+        margin-bottom: 1.5rem;
+      }
+
+      .chapter-text img {
+        max-width: 100%;
+        height: auto;
+        margin: 1.5rem 0;
+        border-radius: 4px;
+      }
+
+      /* Comments section */
+      .comments-section {
+        margin-top: 3rem;
+      }
+
+      .comment-form {
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .comment-input {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        resize: vertical;
+      }
+
+      .comment-btn {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .comment-btn:hover {
+        background-color: var(--primary);
+      }
+
+      .comments-list {
+        margin-top: 1.5rem;
+      }
+
+      .comment-item {
+        background-color: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      .comment-author {
+        font-weight: 500;
+      }
+
+      .comment-date {
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      .comment-text {
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-bg);
+        color: white;
+        padding: 3rem 0 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .footer-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-link {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-link a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-link a:hover {
+        color: var(--accent);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-link {
+        color: white;
+        font-size: 1.2rem;
+        transition: color 0.2s;
+      }
+
+      .social-link:hover {
+        color: var(--accent);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid #4a4a4a;
+        font-size: 0.9rem;
+      }
+
+      /* Dark mode */
+      body.dark-mode {
+        background-color: #1a1a2e;
+        color: #f0f0f0;
+      }
+
+      body.dark-mode .novel-card,
+      body.dark-mode .chapter-item,
+      body.dark-mode .chapter-text,
+      body.dark-mode .comment-form,
+      body.dark-mode .comment-item {
+        background-color: var(--dark-card);
+        color: #f0f0f0;
+      }
+
+      body.dark-mode .novel-title {
+        color: #f0f0f0;
+      }
+
+      body.dark-mode .section-title,
+      body.dark-mode .novel-title-large {
+        color: var(--accent);
+      }
+
+      body.dark-mode .novel-description,
+      body.dark-mode .comment-date {
+        color: #aaa;
+      }
+
+      body.dark-mode .chapter-item:hover {
+        background-color: #2c3e50;
+      }
+
+      body.dark-mode .comment-input {
+        background-color: #2c3e50;
+        border-color: #4a4a4a;
+        color: #f0f0f0;
+      }
+
+      /* Responsive designs */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          background-color: var(--primary);
+          padding: 1rem;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .novel-header {
+          flex-direction: column;
+        }
+
+        .novel-cover-large {
+          width: 100%;
+          height: auto;
+          max-height: 300px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .search-input {
+          padding: 0.6rem;
+        }
+
+        .search-btn {
+          padding: 0.6rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <span>📚</span>
+            <span>NovelNest</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="nav-links" id="nav-links">
+            <a href="#" class="nav-link" id="home-link">Home</a>
+            <a href="https://moniebase.onrender.com" class="nav-link"
+              >Other apps</a
+            >
+            <a href="https://wa.me/+2348128885606" class="nav-link"
+              >Publish Novel</a
+            >
+            <button class="theme-toggle" id="theme-toggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <!-- Home Page -->
+      <section id="home-page">
+        <!-- Hero section -->
+        <div class="hero">
+          <div class="container">
+            <h1>Discover Your Next Adventure</h1>
+            <p>
+              Explore thousands of novels and join a community of passionate
+              readers.
+            </p>
+            <div class="search-box">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search for novels..."
+              />
+              <button class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured novels -->
+        <div class="container">
+          <h2 class="section-title">Featured Novels</h2>
+          <div class="novels-grid" id="novels-container">
+            <!-- Novels will be loaded here dynamically -->
+            <div class="loading">Loading novels...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Novel detail page -->
+      <section id="novel-detail" class="novel-detail">
+        <div class="container">
+          <a href="#" class="back-btn" id="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Novels
+          </a>
+          <div class="novel-header">
+            <img
+              id="detail-cover"
+              src="/api/placeholder/280/400"
+              alt="Novel cover"
+              class="novel-cover-large"
+            />
+            <div class="novel-meta">
+              <h1 id="detail-title" class="novel-title-large">Novel Title</h1>
+              <p id="detail-description" class="novel-description-full">
+                Novel description will be displayed here.
+              </p>
+              <div class="novel-stats">
+                <span id="detail-chapters">0 Chapters</span>
+                <span id="detail-comments">0 Comments</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chapter-list" id="chapter-list">
+            <!-- Chapters will be loaded here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Chapter reading -->
+      <section id="chapter-content" class="chapter-content">
+        <div class="container">
+          <a href="#" class="back-btn" id="back-to-novel">
+            <i class="fas fa-arrow-left"></i> Back to Novel
+          </a>
+          <h1 id="reading-title" class="novel-title-large">Chapter Title</h1>
+
+          <div class="chapter-text" id="reading-content">
+            <!-- Chapter content will be loaded here -->
+          </div>
+
+          <div class="chapter-navigation">
+            <button id="prev-chapter" class="chapter-nav-btn">
+              <i class="fas fa-chevron-left"></i> Previous Chapter
+            </button>
+            <button id="next-chapter" class="chapter-nav-btn">
+              Next Chapter <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Comments section -->
+          <div class="comments-section">
+            <h2 class="section-title">Comments</h2>
+            <div class="comment-form">
+              <textarea
+                id="comment-input"
+                class="comment-input"
+                placeholder="Share your thoughts on this chapter..."
+              ></textarea>
+              <button id="post-comment" class="comment-btn">
+                Post Comment
+              </button>
+            </div>
+            <div class="comments-list" id="comments-container">
+              <!-- Comments will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-title">About NovelNest</h3>
+            <p>
+              NovelNest is a community-driven platform for readers to discover,
+              enjoy, and discuss novels from around the world.
+            </p>
+            <div class="social-links">
+              <a href="https://x.com/blessing4mel?s=09" class="social-link"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/riopresh.org"
+                class="social-link"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a
+                href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                class="social-link"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                  >Whatsapp group</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3 class="footer-title">Support</h3>
+            <ul class="footer-links">
+              <li class="footer-link">
+                <a href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                  >FAQ</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                  >Contact Us</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li class="footer-link">
+                <a href="https://chat.whatsapp.com/EkbQsNDiqDEBexCiOE9LzN"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 NovelNest. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Initialize Back4App
+      Parse.initialize(
+        "qdi2CBB4H4Wbl9gaZeZYIIo2yvOCisfD4az6VKjV",
+        "jMbx06jU6vbsbphNJagXO9zARD1QmOTV2risjDBI"
+      );
+      Parse.serverURL = "https://parseapi.back4app.com/";
+
+      // DOM Elements
+      const homePage = document.getElementById("home-page");
+      const novelDetail = document.getElementById("novel-detail");
+      const chapterContent = document.getElementById("chapter-content");
+      const novelsContainer = document.getElementById("novels-container");
+      const chapterList = document.getElementById("chapter-list");
+      const commentsContainer = document.getElementById("comments-container");
+      const backBtn = document.getElementById("back-btn");
+      const homeLink = document.getElementById("home-link");
+      const backToNovel = document.getElementById("back-to-novel");
+      const prevChapter = document.getElementById("prev-chapter");
+      const nextChapter = document.getElementById("next-chapter");
+      const commentInput = document.getElementById("comment-input");
+      const postComment = document.getElementById("post-comment");
+      const themeToggle = document.getElementById("theme-toggle");
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      // State variables
+      let currentNovelId = null;
+      let currentChapterId = null;
+      let chapters = [];
+      let currentChapterIndex = 0;
+
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", loadNovels);
+      backBtn.addEventListener("click", goToHomePage);
+      homeLink.addEventListener("click", goToHomePage);
+      backToNovel.addEventListener("click", goToNovelDetail);
+      prevChapter.addEventListener("click", loadPreviousChapter);
+      nextChapter.addEventListener("click", loadNextChapter);
+      postComment.addEventListener("click", submitComment);
+      themeToggle.addEventListener("click", toggleTheme);
+      hamburger.addEventListener("click", toggleMenu);
+
+      // Toggle menu
+      function toggleMenu() {
+        navLinks.classList.toggle("show");
+      }
+
+      // Toggle theme
+      function toggleTheme() {
+        document.body.classList.toggle("dark-mode");
+        const icon = themeToggle.querySelector("i");
+        if (document.body.classList.contains("dark-mode")) {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        } else {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        }
+      }
+
+      // Navigation functions
+      function goToHomePage(e) {
+        if (e) e.preventDefault();
+        homePage.style.display = "block";
+        novelDetail.style.display = "none";
+        chapterContent.style.display = "none";
+        currentNovelId = null;
+        currentChapterId = null;
+      }
+
+      function goToNovelDetail(e) {
+        if (e) e.preventDefault();
+        homePage.style.display = "none";
+        novelDetail.style.display = "block";
+        chapterContent.style.display = "none";
+        loadNovelChapters(currentNovelId);
+      }
+
+      function showChapterContent() {
+        homePage.style.display = "none";
+        novelDetail.style.display = "none";
+        chapterContent.style.display = "block";
+      }
+
+      // Load novels
+      async function loadNovels() {
+        try {
+          novelsContainer.innerHTML =
+            '<div class="loading">Loading novels...</div>';
+          const Novel = Parse.Object.extend("Novel");
+          const query = new Parse.Query(Novel);
+          const novels = await query.find();
+
+          if (novels.length > 0) {
+            novelsContainer.innerHTML = "";
+
+            novels.forEach((novel) => {
+              const novelCard = createNovelCard(novel);
+              novelsContainer.appendChild(novelCard);
+            });
+          } else {
+            novelsContainer.innerHTML =
+              '<div class="empty-state">No novels available.</div>';
+          }
+        } catch (error) {
+          novelsContainer.innerHTML = `<div class="error">Error loading novels: ${error.message}</div>`;
+        }
+      }
+
+      // Create novel card
+      function createNovelCard(novel) {
+        const card = document.createElement("div");
+        card.className = "novel-card";
+
+        const coverUrl = novel.get("coverUrl") || "/api/placeholder/250/200";
+        const title = novel.get("title");
+        const description =
+          novel.get("description") || "No description available.";
+
+        card.innerHTML = `
+        <img src="${coverUrl}" alt="${title}" class="novel-cover" onerror="this.src='/api/placeholder/250/200'">
+        <div class="novel-info">
+          <h3 class="novel-title">${title}</h3>
+          <p class="novel-description">${description}</p>
+          <a href="#" class="read-btn">Read Now</a>
+        </div>
+      `;
+
+        card.querySelector(".read-btn").addEventListener("click", (e) => {
+          e.preventDefault();
+          showNovelDetail(novel.id);
+        });
+
+        return card;
+      }
+
+      // Show novel detail
+      async function showNovelDetail(novelId) {
+        try {
+          currentNovelId = novelId;
+
+          const Novel = Parse.Object.extend("Novel");
+          const query = new Parse.Query(Novel);
+          const novel = await query.get(novelId);
+
+          document.getElementById("detail-title").textContent =
+            novel.get("title");
+          document.getElementById("detail-description").textContent =
+            novel.get("description") || "No description available.";
+          document.getElementById("detail-cover").src =
+            novel.get("coverUrl") || "/api/placeholder/280/400";
+
+          homePage.style.display = "none";
+          novelDetail.style.display = "block";
+
+          loadNovelChapters(novelId);
+          loadNovelCommentCount(novelId);
+        } catch (error) {
+          alert(`Error loading novel: ${error.message}`);
+        }
+      }
+
+      // Load novel chapters
+      async function loadNovelChapters(novelId) {
+        try {
+          chapterList.innerHTML =
+            '<div class="loading">Loading chapters...</div>';
+
+          const Novel = Parse.Object.extend("Novel");
+          const novel = new Novel();
+          novel.id = novelId;
+
+          const Chapter = Parse.Object.extend("Chapter");
+          const query = new Parse.Query(Chapter);
+          query.equalTo("novel", novel);
+          query.ascending("order");
+          chapters = await query.find();
+
+          if (chapters.length > 0) {
+            chapterList.innerHTML = "";
+            document.getElementById("detail-chapters").textContent = `${
+              chapters.length
+            } Chapter${chapters.length !== 1 ? "s" : ""}`;
+
+            chapters.forEach((chapter, index) => {
+              const chapterItem = document.createElement("div");
+              chapterItem.className = "chapter-item";
+              chapterItem.innerHTML = `
+              <h3 class="chapter-title">Chapter ${chapter.get(
+                "order"
+              )}: ${chapter.get("title")}</h3>
+            `;
+
+              chapterItem.addEventListener("click", () => {
+                loadChapterContent(chapter.id, index);
+              });
+
+              chapterList.appendChild(chapterItem);
+            });
+          } else {
+            chapterList.innerHTML =
+              '<div class="empty-state">No chapters available.</div>';
+            document.getElementById("detail-chapters").textContent =
+              "0 Chapters";
+          }
+        } catch (error) {
+          chapterList.innerHTML = `<div class="error">Error loading chapters: ${error.message}</div>`;
+        }
+      }
+
+      // Load chapter content
+      async function loadChapterContent(chapterId, index) {
+        try {
+          currentChapterId = chapterId;
+          currentChapterIndex = index;
+
+          const Chapter = Parse.Object.extend("Chapter");
+          const query = new Parse.Query(Chapter);
+          const chapter = await query.get(chapterId);
+
+          document.getElementById(
+            "reading-title"
+          ).textContent = `Chapter ${chapter.get("order")}: ${chapter.get(
+            "title"
+          )}`;
+
+          // Format content
+          let formattedContent =
+            chapter.get("content") || "No content available.";
+          formattedContent = formattedContent.replace(
+            /\[img:(.*?)\]/g,
+            '<img src="$1" alt="Novel image">'
+          );
+          formattedContent = formattedContent.replace(/\n\n/g, "</p><p>");
+          formattedContent = `<p>${formattedContent}</p>`;
+
+          document.getElementById("reading-content").innerHTML =
+            formattedContent;
+
+          // Update navigation buttons
+          prevChapter.classList.toggle("disabled", index === 0);
+          nextChapter.classList.toggle(
+            "disabled",
+            index === chapters.length - 1
+          );
+
+          showChapterContent();
+          loadComments(chapterId);
+        } catch (error) {
+          alert(`Error loading chapter: ${error.message}`);
+        }
+      }
+
+      // Load previous chapter
+      function loadPreviousChapter() {
+        if (currentChapterIndex > 0) {
+          const prevIndex = currentChapterIndex - 1;
+          loadChapterContent(chapters[prevIndex].id, prevIndex);
+        }
+      }
+
+      // Load next chapter
+      function loadNextChapter() {
+        if (currentChapterIndex < chapters.length - 1) {
+          const nextIndex = currentChapterIndex + 1;
+          loadChapterContent(chapters[nextIndex].id, nextIndex);
+        }
+      }
+
+      // Load comments
+      async function loadComments(chapterId) {
+        try {
+          commentsContainer.innerHTML =
+            '<div class="loading">Loading comments...</div>';
+
+          const Chapter = Parse.Object.extend("Chapter");
+          const chapter = new Chapter();
+          chapter.id = chapterId;
+
+          const Comment = Parse.Object.extend("Comment");
+          const query = new Parse.Query(Comment);
+          query.equalTo("chapter", chapter);
+          query.include("user");
+          query.descending("createdAt");
+          const comments = await query.find();
+
+          if (comments.length > 0) {
+            commentsContainer.innerHTML = "";
+
+            comments.forEach((comment) => {
+              const commentItem = createCommentItem(comment);
+              commentsContainer.appendChild(commentItem);
+            });
+          } else {
+            commentsContainer.innerHTML =
+              '<div class="empty-state">No comments yet. Be the first to comment!</div>';
+          }
+        } catch (error) {
+          commentsContainer.innerHTML = `<div class="error">Error loading comments: ${error.message}</div>`;
+        }
+      }
+
+      // Create comment item
+      function createCommentItem(comment) {
+        const commentItem = document.createElement("div");
+        commentItem.className = "comment-item";
+
+        const user = comment.get("user");
+        const username = user ? user.get("username") : "Anonymous";
+        const date = comment.createdAt.toLocaleDateString();
+
+        commentItem.innerHTML = `
+        <div class="comment-header">
+          <span class="comment-author">${username}</span>
+          <span class="comment-date">${date}</span>
+        </div>
+        <p class="comment-text">${comment.get("text")}</p>
+      `;
+
+        return commentItem;
+      }
+
+      // Submit comment
+      async function submitComment() {
+        const text = commentInput.value.trim();
+
+        if (!text) {
+          alert("Please enter a comment.");
+          return;
+        }
+
+        if (!currentChapterId) {
+          alert("Error: No chapter selected.");
+          return;
+        }
+
+        try {
+          postComment.disabled = true;
+          postComment.textContent = "Posting...";
+
+          // Get current user
+          const currentUser = Parse.User.current();
+
+          if (!currentUser) {
+            // For demo, create anonymous comment
+            const Comment = Parse.Object.extend("Comment");
+            const comment = new Comment();
+
+            const Chapter = Parse.Object.extend("Chapter");
+            const chapter = new Chapter();
+            chapter.id = currentChapterId;
+
+            comment.set("text", text);
+            comment.set("chapter", chapter);
+
+            await comment.save();
+          } else {
+            // Create comment with user reference
+            const Comment = Parse.Object.extend("Comment");
+            const comment = new Comment();
+
+            const Chapter = Parse.Object.extend("Chapter");
+            const chapter = new Chapter();
+            chapter.id = currentChapterId;
+
+            comment.set("text", text);
+            comment.set("chapter", chapter);
+            comment.set("user", currentUser);
+
+            await comment.save();
+          }
+
+          // Clear input and reload comments
+          commentInput.value = "";
+          loadComments(currentChapterId);
+        } catch (error) {
+          alert(`Error posting comment: ${error.message}`);
+        } finally {
+          postComment.disabled = false;
+          postComment.textContent = "Post Comment";
+        }
+      }
+
+      // Load novel comment count
+      async function loadNovelCommentCount(novelId) {
+        try {
+          const Novel = Parse.Object.extend("Novel");
+          const novel = new Novel();
+          novel.id = novelId;
+
+          const Chapter = Parse.Object.extend("Chapter");
+          const chapterQuery = new Parse.Query(Chapter);
+          chapterQuery.equalTo("novel", novel);
+          const chaptersForNovel = await chapterQuery.find();
+
+          if (chaptersForNovel.length > 0) {
+            let totalComments = 0;
+
+            for (const chapter of chaptersForNovel) {
+              const Comment = Parse.Object.extend("Comment");
+              const commentQuery = new Parse.Query(Comment);
+              commentQuery.equalTo("chapter", chapter);
+              const commentCount = await commentQuery.count();
+              totalComments += commentCount;
+            }
+
+            document.getElementById(
+              "detail-comments"
+            ).textContent = `${totalComments} Comment${
+              totalComments !== 1 ? "s" : ""
+            }`;
+          } else {
+            document.getElementById("detail-comments").textContent =
+              "0 Comments";
+          }
+        } catch (error) {
+          document.getElementById("detail-comments").textContent =
+            "Error loading comments";
+        }
+      }
+
+      // Auto login for demo purposes
+      function autoLogin() {
+        // This is just for demo purposes
+        if (!Parse.User.current()) {
+          const user = new Parse.User();
+          user.set("username", "demo_user_" + Math.floor(Math.random() * 1000));
+          user.set("password", "password123");
+          user.set(
+            "email",
+            `demo${Math.floor(Math.random() * 1000)}@example.com`
+          );
+
+          user.signUp().catch((error) => {
+            console.log("Auto login failed: ", error.message);
+          });
+        }
+      }
+
+      // Initialize app
+      function init() {
+        loadNovels();
+        // Uncomment to enable auto login for testing
+        // autoLogin();
+      }
+
+      init();
+    </script>
+  </body>
+</html>
