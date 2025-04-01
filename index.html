@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="monetag" content="7887a3547e88df9584408d1fcdb01495">
     <title>NovelNest</title>
     <meta
       name="description"
@@ -40,12 +39,20 @@
         "image": "URL_to_image_of_cover.jpg"
       }
     </script>
+    <meta name="monetag" content="18a4805400631d6ede66478af49980f7" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.4/parse.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
-        <script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',9154968,document.createElement('script'))</script>
+    <script>
+      (function (d, z, s) {
+        s.src = "https://" + d + "/400/" + z;
+        try {
+          (document.body || document.documentElement).appendChild(s);
+        } catch (e) {}
+      })("vemtoutcheeg.com", 9154968, document.createElement("script"));
+    </script>
     <style>
       :root {
         --primary: #4a6fa5;
@@ -525,6 +532,42 @@
         font-size: 0.9rem;
       }
 
+      .novel-share {
+        margin: 1.5rem 0;
+      }
+
+      .share-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .share-button {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .share-facebook {
+        background-color: #3b5998;
+      }
+
+      .share-twitter {
+        background-color: #1da1f2;
+      }
+
+      .share-whatsapp {
+        background-color: #25d366;
+      }
+
+      .share-link {
+        background-color: var(--accent);
+        display: flex;
+        align-items: center;
+      }
+
       /* Dark mode */
       body.dark-mode {
         background-color: #1a1a2e;
@@ -633,7 +676,7 @@
             <a href="https://moniebase.onrender.com" class="nav-link"
               >Other apps</a
             >
-            <a href="demoadminnovel.html" class="nav-link"
+            <a href="https://wa.me/+2348128885606" class="nav-link"
               >Publish Novel</a
             >
             <button class="theme-toggle" id="theme-toggle">
@@ -700,6 +743,32 @@
               <div class="novel-stats">
                 <span id="detail-chapters">0 Chapters</span>
                 <span id="detail-comments">0 Comments</span>
+              </div>
+
+              <div class="novel-share">
+                <p>Share this novel:</p>
+                <div class="share-buttons" id="share-buttons">
+                  <a href="#" class="share-button share-facebook" id="share-fb">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                  </a>
+                  <a
+                    href="#"
+                    class="share-button share-twitter"
+                    id="share-twitter"
+                  >
+                    <i class="fab fa-twitter"></i> Twitter
+                  </a>
+                  <a
+                    href="#"
+                    class="share-button share-whatsapp"
+                    id="share-whatsapp"
+                  >
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                  </a>
+                  <a href="#" class="share-button share-link" id="share-link">
+                    <i class="fas fa-link"></i> Copy Link
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -845,6 +914,10 @@
       const themeToggle = document.getElementById("theme-toggle");
       const hamburger = document.getElementById("hamburger");
       const navLinks = document.getElementById("nav-links");
+      const shareFb = document.getElementById("share-fb");
+      const shareTwitter = document.getElementById("share-twitter");
+      const shareWhatsapp = document.getElementById("share-whatsapp");
+      const shareLink = document.getElementById("share-link");
 
       // State variables
       let currentNovelId = null;
@@ -862,6 +935,13 @@
       postComment.addEventListener("click", submitComment);
       themeToggle.addEventListener("click", toggleTheme);
       hamburger.addEventListener("click", toggleMenu);
+
+      // Add event listeners for share buttons
+      if (shareFb) shareFb.addEventListener("click", shareOnFacebook);
+      if (shareTwitter) shareTwitter.addEventListener("click", shareOnTwitter);
+      if (shareWhatsapp)
+        shareWhatsapp.addEventListener("click", shareOnWhatsApp);
+      if (shareLink) shareLink.addEventListener("click", copyShareLink);
 
       // Toggle menu
       function toggleMenu() {
@@ -941,13 +1021,15 @@
           novel.get("description") || "No description available.";
 
         card.innerHTML = `
-        <img src="${coverUrl}" alt="${title}" class="novel-cover" onerror="this.src='/api/placeholder/250/200'">
-        <div class="novel-info">
-          <h3 class="novel-title">${title}</h3>
-          <p class="novel-description">${description}</p>
-          <a href="#" class="read-btn">Read Now</a>
-        </div>
-      `;
+    <img src="${coverUrl}" alt="${title}" class="novel-cover" onerror="this.src='/api/placeholder/250/200'">
+    <div class="novel-info">
+      <h3 class="novel-title">${title}</h3>
+      <p class="novel-description">${description}</p>
+      <div class="novel-card-actions">
+        <a href="#" class="read-btn">Read Now</a>
+      </div>
+    </div>
+  `;
 
         card.querySelector(".read-btn").addEventListener("click", (e) => {
           e.preventDefault();
@@ -955,6 +1037,81 @@
         });
 
         return card;
+      }
+
+      // Get novel share URL
+      function getNovelShareUrl(novelId) {
+        return `${window.location.origin}${window.location.pathname}?novel=${novelId}`;
+      }
+
+      // Share functions
+      function shareOnFacebook(e) {
+        e.preventDefault();
+        if (!currentNovelId) return;
+
+        const shareUrl = getNovelShareUrl(currentNovelId);
+        const title = document.getElementById("detail-title").textContent;
+
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            shareUrl
+          )}&quote=${encodeURIComponent(title)}`,
+          "_blank",
+          "width=600,height=400"
+        );
+      }
+
+      function shareOnTwitter(e) {
+        e.preventDefault();
+        if (!currentNovelId) return;
+
+        const shareUrl = getNovelShareUrl(currentNovelId);
+        const title = document.getElementById("detail-title").textContent;
+
+        window.open(
+          `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+            shareUrl
+          )}&text=${encodeURIComponent(title)}`,
+          "_blank",
+          "width=600,height=400"
+        );
+      }
+
+      function shareOnWhatsApp(e) {
+        e.preventDefault();
+        if (!currentNovelId) return;
+
+        const shareUrl = getNovelShareUrl(currentNovelId);
+        const title = document.getElementById("detail-title").textContent;
+
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(title + " - " + shareUrl)}`,
+          "_blank"
+        );
+      }
+
+      function copyShareLink(e) {
+        e.preventDefault();
+        if (!currentNovelId) return;
+
+        const shareUrl = getNovelShareUrl(currentNovelId);
+
+        navigator.clipboard
+          .writeText(shareUrl)
+          .then(() => {
+            alert("Link copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy link: ", err);
+            // Fallback
+            const tempInput = document.createElement("input");
+            tempInput.value = shareUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Link copied to clipboard!");
+          });
       }
 
       // Show novel detail
@@ -978,8 +1135,12 @@
 
           loadNovelChapters(novelId);
           loadNovelCommentCount(novelId);
+
+          // Update URL with novel ID
+          history.pushState(null, "", getNovelShareUrl(novelId));
         } catch (error) {
           alert(`Error loading novel: ${error.message}`);
+          goToHomePage();
         }
       }
 
@@ -1009,10 +1170,10 @@
               const chapterItem = document.createElement("div");
               chapterItem.className = "chapter-item";
               chapterItem.innerHTML = `
-              <h3 class="chapter-title">Chapter ${chapter.get(
-                "order"
-              )}: ${chapter.get("title")}</h3>
-            `;
+          <h3 class="chapter-title">Chapter ${chapter.get(
+            "order"
+          )}: ${chapter.get("title")}</h3>
+        `;
 
               chapterItem.addEventListener("click", () => {
                 loadChapterContent(chapter.id, index);
@@ -1076,7 +1237,10 @@
 
       // Load previous chapter
       function loadPreviousChapter() {
-        if (currentChapterIndex > 0) {
+        if (
+          currentChapterIndex > 0 &&
+          !prevChapter.classList.contains("disabled")
+        ) {
           const prevIndex = currentChapterIndex - 1;
           loadChapterContent(chapters[prevIndex].id, prevIndex);
         }
@@ -1084,7 +1248,10 @@
 
       // Load next chapter
       function loadNextChapter() {
-        if (currentChapterIndex < chapters.length - 1) {
+        if (
+          currentChapterIndex < chapters.length - 1 &&
+          !nextChapter.classList.contains("disabled")
+        ) {
           const nextIndex = currentChapterIndex + 1;
           loadChapterContent(chapters[nextIndex].id, nextIndex);
         }
@@ -1133,12 +1300,12 @@
         const date = comment.createdAt.toLocaleDateString();
 
         commentItem.innerHTML = `
-        <div class="comment-header">
-          <span class="comment-author">${username}</span>
-          <span class="comment-date">${date}</span>
-        </div>
-        <p class="comment-text">${comment.get("text")}</p>
-      `;
+    <div class="comment-header">
+      <span class="comment-author">${username}</span>
+      <span class="comment-date">${date}</span>
+    </div>
+    <p class="comment-text">${comment.get("text")}</p>
+  `;
 
         return commentItem;
       }
@@ -1164,34 +1331,21 @@
           // Get current user
           const currentUser = Parse.User.current();
 
-          if (!currentUser) {
-            // For demo, create anonymous comment
-            const Comment = Parse.Object.extend("Comment");
-            const comment = new Comment();
+          const Comment = Parse.Object.extend("Comment");
+          const comment = new Comment();
 
-            const Chapter = Parse.Object.extend("Chapter");
-            const chapter = new Chapter();
-            chapter.id = currentChapterId;
+          const Chapter = Parse.Object.extend("Chapter");
+          const chapter = new Chapter();
+          chapter.id = currentChapterId;
 
-            comment.set("text", text);
-            comment.set("chapter", chapter);
+          comment.set("text", text);
+          comment.set("chapter", chapter);
 
-            await comment.save();
-          } else {
-            // Create comment with user reference
-            const Comment = Parse.Object.extend("Comment");
-            const comment = new Comment();
-
-            const Chapter = Parse.Object.extend("Chapter");
-            const chapter = new Chapter();
-            chapter.id = currentChapterId;
-
-            comment.set("text", text);
-            comment.set("chapter", chapter);
+          if (currentUser) {
             comment.set("user", currentUser);
-
-            await comment.save();
           }
+
+          await comment.save();
 
           // Clear input and reload comments
           commentInput.value = "";
@@ -1242,29 +1396,20 @@
         }
       }
 
-      // Auto login for demo purposes
-      function autoLogin() {
-        // This is just for demo purposes
-        if (!Parse.User.current()) {
-          const user = new Parse.User();
-          user.set("username", "demo_user_" + Math.floor(Math.random() * 1000));
-          user.set("password", "password123");
-          user.set(
-            "email",
-            `demo${Math.floor(Math.random() * 1000)}@example.com`
-          );
+      // Check for novel ID in URL
+      function checkForNovelInUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const novelId = urlParams.get("novel");
 
-          user.signUp().catch((error) => {
-            console.log("Auto login failed: ", error.message);
-          });
+        if (novelId) {
+          showNovelDetail(novelId);
         }
       }
 
       // Initialize app
       function init() {
         loadNovels();
-        // Uncomment to enable auto login for testing
-        // autoLogin();
+        checkForNovelInUrl();
       }
 
       init();
